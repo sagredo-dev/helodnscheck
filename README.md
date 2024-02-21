@@ -6,7 +6,7 @@
 - not solving HELO/EHLOs domains (no A record). You'll get some false positive if you turn this on, as clients whose administrator forgot to add the A record will be banned.
 - clients whose remote IP doesn't match the A record. This is completely against RFC-821.
 
-## More info and support
+## More info
 You can read more info and ask for support [here](https://notes.sagredo.eu/en/qmail-notes-185/denying-bad-dns-heloehlos-255.html).
 
 ## Credits 
