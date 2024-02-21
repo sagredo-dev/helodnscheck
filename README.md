@@ -1,4 +1,4 @@
-# qmail-spp `helodnschek` plugin
+# qmail-spp `helodnscheck` plugin
 
 `qmail-spp helodnscheck` plugin which denies clients with one of these particular DNS failures:
 - HELO/EHLOs domains with an invalid syntax. Random strings but also typing errors like sagredo..eu will be banned.
