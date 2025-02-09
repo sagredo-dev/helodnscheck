@@ -85,9 +85,9 @@
   Note: If there is no HELO/EHLO argument, it defaults to GNLR
 
   Compile as follows:
-  g++ -o /var/qmail/plugins/helodnscheck helodnscheck-x.y.cpp -lpcre
+  g++ -o /var/qmail/plugins/helodnscheck helodnscheck.cpp -lpcre
   or, on freeBSD/clang:
-  clang++ helodnscheck.cpp -lpcre -I/usr/local/include -L/usr/local/lib
+  clang++ -o /var/qmail/plugin/helodnscheck helodnscheck.cpp -lpcre -I/usr/local/include -L/usr/local/lib
 
   Test as follows:
   SMTPHELOHOST="test.tld" TCPREMOTEIP="1.2.3.4" HELO_DNS_CHECK="BLRD" ./helodnscheck
