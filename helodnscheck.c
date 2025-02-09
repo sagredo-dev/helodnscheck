@@ -88,6 +88,8 @@
 
   Compile as follows:
   gcc -o /var/qmail/plugins/helodnscheck helodnscheck-x.y.c -lresolv -lpcre
+  or, on freeBSD/clang:
+  cc helodnscheck.cpp -lpcre -I/usr/local/include -L/usr/local/lib
 
   Test as follows:
   SMTPHELOHOST="test.tld" TCPREMOTEIP="1.2.3.4" HELO_DNS_CHECK="BLRD" ./helodnscheck

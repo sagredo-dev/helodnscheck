@@ -1,4 +1,4 @@
-/* helodnscheck.cpp - version 9.0.1 */
+/* helodnscheck.cpp - version 9.0.2 */
 
 /*
 * Copyright (C) 2007 Jason Frisvold <friz@godshell.com>
@@ -56,12 +56,10 @@
     A - Not solving hostname in HELO/EHLO are denied. This clients do not
         even have an A record.
         Using G together with A is redundant (just use A).
-    I - Same as A for backward compatibilty. Obsolete and will be removed.
     N - (Not me, default) deny if "RELAYCLIENT" is NOT set and the HELO/EHLO hostname
         matches one of our IPs contained in control/moreipme.
         "localhost" will be denied as well.
         Using N together with A is redundant (just use A).
-    V - Same as N for backward compatibilty. Obsolete and will be removed.
     B - Block if the remote IP (TCPREMOTEIP) is not contained in the
         IP addresses solved. This is the original program's mode.
         Using G and/or A and/or N is together with B is redundant (just use B).
@@ -88,6 +86,8 @@
 
   Compile as follows:
   g++ -o /var/qmail/plugins/helodnscheck helodnscheck-x.y.cpp -lpcre
+  or, on freeBSD/clang:
+  clang++ helodnscheck.cpp -lpcre -I/usr/local/include -L/usr/local/lib
 
   Test as follows:
   SMTPHELOHOST="test.tld" TCPREMOTEIP="1.2.3.4" HELO_DNS_CHECK="BLRD" ./helodnscheck
@@ -322,8 +322,8 @@ int main() {
   char *relayclient = strpbrk(action,"R");
   char *pass        = strpbrk(action,"P");
   char *garbage     = strpbrk(action,"G");
-  int   notsolving  = (int) (strpbrk(action,"A") || strpbrk(action,"I"));
-  int   notme       = (int) (strpbrk(action,"N") || strpbrk(action,"V"));
+  char *notsolving  = strpbrk(action,"A");
+  char *notme       = strpbrk(action,"N");
   char *block       = strpbrk(action,"B");
 
 
@@ -331,10 +331,20 @@ int main() {
     // always consider the normal log action as active if debugging
     log = "L";
 
+    // print action
     s << "action is "        << action;        out(s,true);
-    s << "no_helo_check is " << no_helo_check; out(s,true);
-    s << "helo_domain is "   << helo_domain;   out(s,true);
-    s << "remote_ip is "     << remote_ip;     out(s,true);
+    // print no_helo_check
+    if (no_helo_check) s << "no_helo_check is " << no_helo_check;
+    else s << "no_helo_check is not defined";
+    out(s,true);
+    // print helo_domain
+    if (helo_domain) s << "helo_domain is "   << helo_domain;
+    else s << "helo_domain is not defined";
+    out(s,true);
+    // print remote_ip
+    if (remote_ip) s << "remote_ip is "     << remote_ip;
+    else s << "remote_ip is not defined";
+    out(s,true);
   }
 
   // skip if TCPREMOTEIP not set
