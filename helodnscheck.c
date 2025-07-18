@@ -27,12 +27,12 @@
   if the TCPREMOTEIP variable (mostly set by tcpserver) match
   any of the IP addresses the HELO resolves to.
 
-  (2022 v.7) Roberto Puzzanghera https://notes.sagredo.eu
+  (2022 v.7) Roberto Puzzanghera https://www.sagredo.eu
   Deny HELOs containing one of our domains, when RELAYCLIENT is
   not defined. In addition, it is now possible to deny only not solving
   hosts in HELO/EHLO.
 
-  (July 2023, v. 8.1) Roberto Puzzanghera https://notes.sagredo.eu
+  (July 2023, v. 8.1) Roberto Puzzanghera https://www.sagredo.eu
   Code revision.
   Added G filter for HELO/EHLO with malformed syntax (mostly random strings).
   I filter copied to A. V filter copied to N.
@@ -95,7 +95,7 @@
   SMTPHELOHOST="test.tld" TCPREMOTEIP="1.2.3.4" HELO_DNS_CHECK="BLRD" ./helodnscheck
 
   More info here:
-  https://notes.sagredo.eu/en/qmail-notes-185/denying-bad-dns-heloehlos-255.html
+  https://www.sagredo.eu/en/qmail-notes-185/denying-bad-dns-heloehlos-255.html
 ************************************************************************************/
 
 #include <arpa/inet.h>

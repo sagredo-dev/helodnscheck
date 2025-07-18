@@ -7,7 +7,7 @@
 - clients whose remote IP doesn't match the A record. This is completely against RFC-821.
 
 ## More info
-You can read more info and ask for support [here](https://notes.sagredo.eu/en/qmail-notes-185/denying-bad-dns-heloehlos-255.html).
+You can read more info and ask for support [here](https://www.sagredo.eu/en/qmail-notes-185/denying-bad-dns-heloehlos-255.html).
 
 ## Credits 
 I derived this program from an [original work of Perolo Silantico, Jason Frisvold with modifications by Ren Bing](https://qmail-spp.sourceforge.net/plugins/details/?id=33).
